@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.goal-info {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-underline {
+    width: 100%;
+    height: 2px;
+    background-color: #cdcdcd;
+    margin-top: 10px;
+}
+
+h1 {
+    color: #ec86ee;
+}
+
+.header-buttons button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border: 1px solid #cdcdcd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.goal-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.goal-info div {
+    text-align: center;
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.search-section select {
+    margin-right: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination a,
+.pagination span {
+    margin: 0 5px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    background: transparent;
+    transition: background 0.3s;
+}
+
+.pagination a:hover {
+    background: rgba(255, 0, 255, 0.2);
+    /* ホバー時の色 */
+}
+
+.pagination .active {
+    background: linear-gradient(to right, #a3a6e1, #f7acda);
+    color: white;
+    border-radius: 8px;
+}
