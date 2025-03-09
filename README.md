@@ -5,7 +5,7 @@
 ### Docker ビルド
 1. git clone git@github.com:misato-kataoka/pigly2.git
 
-2. cd pigly
+2. cd pigly2
 
 3. docker-compose up -d --build
 
