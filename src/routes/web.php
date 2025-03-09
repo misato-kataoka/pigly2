@@ -46,7 +46,8 @@ Route::get('/register/step1', [RegisterController::class, 'showRegistrationForm'
 Route::post('/register/step1', [RegisterController::class, 'register'])->name('register');
 
 // 初期目標体重登録
-Route::get('/register/step2', [WeightLogController::class, 'initialGoalWeight'])->name('register.step2');
+Route::get('/register/step2', [RegisterController::class, 'showStep2Form'])->name('register.step2'); // RegisterControllerに変更
+Route::post('/register/step2', [RegisterController::class, 'registerStep2'])->name('register.step2.post'); // RegisterControllerに変更
 
 // ログイン
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

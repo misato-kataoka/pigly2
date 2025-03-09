@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
-class PiglyUserTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,3 +21,4 @@ class PiglyUserTableSeeder extends Seeder
         ]);
     }
 }
+

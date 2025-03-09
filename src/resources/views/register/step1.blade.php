@@ -15,7 +15,7 @@
             </a>
                 <h2>新規会員登録</h2>
                 <p>STEP1 アカウント情報の登録</p>
-                <form action="{{ route('register') }}" method="POST">
+                <form action="{{ route('register.step2') }}" method="POST">
                     @csrf
 
                     <label for="name">お名前</label>
