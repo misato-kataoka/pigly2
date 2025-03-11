@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="goal_setting.css">
+    <link rel="stylesheet" href="{{ asset('css/goal_setting.css') }}">
     <title>目標体重設定</title>
 </head>
 <body>

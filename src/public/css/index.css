@@ -56,6 +56,19 @@ h1 {
     text-align: center;
 }
 
+.goal-weight,
+.goal-difference,
+.latest-weight {
+    text-align: center;
+}
+
+.goal-weight span,
+.goal-difference span,
+.latest-weight span {
+    display: block;
+    font-size: 1.5rem;
+}
+
 .search-section {
     display: flex;
     align-items: center;
@@ -83,6 +96,12 @@ th {
     background-color: #f2f2f2;
 }
 
+.search-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .search-button {
     background-color: #939393;
     color: white;
@@ -103,11 +122,131 @@ th {
 .add-data-button {
     background: linear-gradient(to right, #a3a6e1, #f7acda);
     color: white;
-    padding: 10px;
+    /*margin-left: 200px;*/
+    padding: 5px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    width: 15%;
+    width: 90px;
+}
+
+.modal {
+    display: none;
+    /* モーダルをデフォルトで非表示にします */
+    position: fixed;
+    z-index: 1000;
+    /* 最前面に表示 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* 全画面 */
+    height: 100%;
+    /* 全画面 */
+    overflow: auto;
+    /* スクロールバーを有効にする */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 背景の透明度を設定 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    /* 上下あけて中央に配置 */
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 800px;
+    width: 95%;
+}
+
+#modal-toggle:checked+.modal {
+    display: block;
+    /* チェックボックスがチェックされているときはモーダルを表示 */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    /* 各フォームグループの間隔 */
+}
+
+.form-group label {
+    display: block;
+    /* ラベルをブロック要素に */
+    margin-bottom: 5px;
+    /* ラベルと入力の間隔 */
+}
+
+.required {
+    background-color: red;
+    color: white;
+    border-radius: 2px;
+    font-size: 0.9em;
+}
+
+input[type="date"],
+input[type="number"],
+input[type="time"],
+textarea {
+    width: 100%;
+    /* 幅を100%に */
+    padding: 10px;
+    /* 内側の余白 */
+    border: 1px solid #ccc;
+    /* 枠線 */
+    border-radius: 4px;
+    /* 角を丸くする */
+    box-sizing: border-box;
+    /* パディングを含めたサイズ計算 */
+}
+
+textarea {
+    height: 100px;
+    /* 高さを設定 */
+}
+
+.input-group {
+    display: flex;
+    /* 横並びに */
+    align-items: center;
+    /* 縦方向の中央揃え */
+}
+
+.input-group input {
+    flex: 1;
+    /* 入力欄が残りのスペースを占有 */
+    margin-right: 5px;
+    /* 単位との間にマージンを追加 */
+}
+
+.unit {
+    margin-left: 5px;
+    /* 単位の間隔 */
+    font-size: 0.9em;
+    /* フォントサイズを小さく */
+}
+
+.button-group {
+    display: flex;
+    /* ボタンを横並びに */
+    justify-content: center;
+    /* ボタンの間隔を均等に */
+    gap: 20px;
+}
+
+.cancel-button,
+.submit-button {
+    background-color: #f0f0f0;/* 戻るボタンの背景色 */
+    padding: 10px 20px;/* 内側の余白 */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 120px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* 影を追加 */
+}
+
+.submit-button {
+    background: linear-gradient(to right, #a3a6e1, #f7acda);
+    color: white;
 }
 
 .pagination {

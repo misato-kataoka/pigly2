@@ -51,8 +51,53 @@
                     @endforeach
                 </select>
                 <button type="submit" class="search-button">検索</button>
+                <label for="modal-toggle" class="add-data-button">データ追加</label> <!-- データ追加ボタン -->
             </form>
         </div>
+
+        <input type="checkbox" id="modal-toggle" style="display:none;" />
+
+        <div id="addWeightLogModal" class="modal">
+            <div class="modal-content">
+                <h2>Weight Logを追加</h2>
+                <form id="weightLogForm" method="POST" action="{{ route('weight_logs.store') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="date">日付<span class="required">必須</span></label>
+                        <input type="date" name="date" id="date" value="{{ date('Y-m-d') }}">
+                        <span class="date-display">{{ date('Y年n月j日') }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">体重<span class="required">必須</span></label>
+                        <div class="input-group">
+                            <input type="number" name="weight" step="0.1" placeholder="50.0">
+                            <span class="unit">kg</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="calories">食事摂取カロリー<span class="required">必須</span></label>
+                        <div class="input-group">
+                            <input type="number" name="calories" placeholder="1200">
+                            <span class="unit">cal</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exercise_time">運動時間<span class="required">必須</span></label>
+                        <input type="time" name="exercise_time" placeholder="00:00" >
+                    </div>
+                    <div class="form-group">
+                        <label for="exercise_content">運動内容</label>
+                        <textarea name="exercise_content" placeholder="運動内容を追加"></textarea>
+                    </div>
+                    <div class="button-group">
+                        <a href="#!" class="cancel-button" onclick="document.getElementById('modal-toggle').checked = false;">戻る</a>
+                        <button type="submit" class="submit-button">登録</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--<button class="add-data-button" onclick="location.href='{{ route('weight_logs.create') }}'">データ追加</button> <!-- データ追加へのリンク -->
 
         <table>
             <thead>
@@ -104,7 +149,6 @@
             @endif
         </div>
 
-        <button class="add-data-button" onclick="location.href='{{ route('weight_logs.create') }}'">データ追加</button> <!-- データ追加へのリンク -->
     </div>
 </body>
 </html>
