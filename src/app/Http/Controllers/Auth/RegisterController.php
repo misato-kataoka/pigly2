@@ -31,26 +31,20 @@ class RegisterController extends Controller
     {
         // セッションにstep1のデータがあるか確認
         if (!session()->has('registration_data')) {
-            return redirect()->route('register'); // step1に戻す
+            return redirect()->route('register.step1'); // step1に戻す
         }
 
         return view('register.step2'); // step2のフォームを表示
     }
 
-    public function registerStep2(Request $request)
+    public function registerStep2(ContactRequest $request)
     {
-        // step2のバリデーション
-        $request->validate([
-            'weight' => 'required|numeric',
-            'target-weight' => 'required|numeric',
-        ]);
-
         // セッションからstep1のデータを取得
         $registrationData = $request->session()->get('registration_data');
 
         // データがない場合は、登録画面に戻す
         if (!$registrationData) {
-            return redirect()->route('register');
+            return redirect()->route('register.step1');
         }
 
         // ユーザーを作成

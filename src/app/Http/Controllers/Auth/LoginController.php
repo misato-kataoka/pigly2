@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ContactRequest; // ContactRequestをインポート
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Laravel\Fortify\Facades\Fortify;
+//use Laravel\Fortify\Facades\Fortify;
 
 class LoginController extends Controller
 {
@@ -15,7 +15,7 @@ class LoginController extends Controller
         return view('auth.login'); // ログインフォームのビューを返す
     }
 
-    public function login(ContactRequest $request) // ContactRequestを使用
+    public function login(LoginRequest $request)
     {
         // 認証試行
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -32,6 +32,8 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout(); // ログアウト処理
+        $request->session()->invalidate(); // セッションを無効化
+        $request->session()->regenerateToken(); // CSRF トークンを再生成
         return redirect('/login')->with('success', 'ログアウトしました。');
     }
 }

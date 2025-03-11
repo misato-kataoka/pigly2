@@ -27,6 +27,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest; // ContactRequestをインポート
 use App\Models\WeightLog;
+use App\Models\WeightTarget;
 use Illuminate\Http\Request;
 
 class WeightLogController extends Controller
@@ -34,12 +35,40 @@ class WeightLogController extends Controller
     public function index()
     {
         $weightLogs = WeightLog::where('user_id', auth()->id())->get(); // 認証ユーザーの体重ログを取得
-        return view('weight_logs.index', compact('weightLogs')); // ビューを返す
+        $weightTarget = WeightTarget::where('user_id', auth()->id())->first(); // ユーザーの目標体重を取得
+
+        return view('weight_logs.index', compact('weightLogs', 'weightTarget')); // ビューを返す
     }
 
     public function create()
     {
         return view('weight_logs.create'); // 体重登録フォームのビューを返す
+    }
+
+    public function goalSetting()
+    {
+        return view('weight_logs.goal_setting'); // 目標設定のビューを返す
+    }
+
+    public function updateGoalWeight(Request $request)
+    {
+    $request->validate([
+        'target_weight' => 'required|numeric|min:0', // バリデーション
+    ]);
+
+    $weightTarget = WeightTarget::where('user_id', auth()->id())->first();
+
+        if ($weightTarget) {
+            $weightTarget->update(['target_weight' => $request->target_weight]);
+        } else {
+        // 新規作成する場合
+        WeightTarget::create([
+            'user_id' => auth()->id(),
+            'target_weight' => $request->target_weight,
+        ]);
+        }
+
+        return redirect()->route('weight_logs.index')->with('success', '目標体重が更新されました。');
     }
 
     public function store(ContactRequest $request) // ContactRequestを使用
@@ -87,8 +116,4 @@ class WeightLogController extends Controller
         return redirect()->route('weight_logs.index')->with('success', '体重が削除されました。');
     }
 
-    public function goalSetting()
-    {
-        return view('weight_logs.goal_setting'); // 目標設定のビューを返す
-    }
 }

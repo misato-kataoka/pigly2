@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <title>PiGLy 管理画面</title>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>PiGLy</h1>
+            <h1>PiGLy2</h1>
             <div class="header-buttons">
                 <button class="settings-button" onclick="location.href='{{ route('goal.setting') }}'">目標体重設定</button>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
@@ -23,7 +23,7 @@
         <div class="goal-info">
             <div class="goal-weight">
                 <span>目標体重</span>
-                <span>{{ $weightTarget ? $weightTarget->target_weight : '設定なし' }} kg<</span>
+                <span>{{ $weightTarget ? $weightTarget->target_weight : '設定なし' }} kg</span>
             </div>
             <div class="goal-difference">
                 <span>目標まで</span>

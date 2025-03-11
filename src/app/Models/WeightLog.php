@@ -9,5 +9,12 @@ class WeightLog extends Model
 {
     use HasFactory;
 
+    protected $table = 'weight_logs';
     // ...
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

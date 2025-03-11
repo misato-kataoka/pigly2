@@ -14,7 +14,7 @@
             </a>
             <h2>新規会員登録</h2>
             <p>STEP2 体重データの入力</p>
-            <form action="{{ route(''register.step2.post'') }}" method="POST">
+            <form action="{{ route('register.step2.post') }}" method="POST">
                 @csrf
 
                 <label for="weight">現在の体重</label>

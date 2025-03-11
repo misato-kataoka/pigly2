@@ -29,7 +29,7 @@ class WeightLogFactory extends Factory
             'weight' => $this->faker->randomFloat(1, 40, 45), // 40kgから45kgの範囲
             'calories' => $this->faker->numberBetween(900, 1500), // 900から1500の範囲
             'exercise_time' => $this->faker->time(),
-            'exercise_content' => $this->faker->sentence(),
+            'exercise_content' => $this->faker->realText(20),
         ];
     }
 }
