@@ -25,7 +25,8 @@ class WeightLogController extends Controller
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContactRequest; // ContactRequestをインポート
+use App\Http\Requests\ContactRequest;
+use App\Http\Requests\WeightLogRequest;
 use App\Models\WeightLog;
 use App\Models\WeightTarget;
 use Illuminate\Http\Request;
@@ -78,7 +79,7 @@ class WeightLogController extends Controller
         return redirect()->route('weight_logs.index')->with('success', '目標体重が更新されました。');
     }
 
-    public function store(ContactRequest $request) // ContactRequestを使用
+    public function store(WeightLogRequest $request)
     {
         WeightLog::create([
             'user_id' => auth()->id(),
@@ -88,6 +89,7 @@ class WeightLogController extends Controller
             'exercise_time' => '00:00',
             'exercise_content' => '',
         ]);
+        WeightLog::create($request->all());
 
         return redirect()->route('weight_logs.index')->with('success', '体重が登録されました。');
     }

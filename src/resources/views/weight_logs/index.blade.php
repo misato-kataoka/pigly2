@@ -55,7 +55,7 @@
             </form>
         </div>
 
-        <input type="checkbox" id="modal-toggle" style="display:none;" />
+        <input type="checkbox" id="modal-toggle" style="display:none;" {{ $errors->any() ? 'checked' : '' }} />
 
         <div id="addWeightLogModal" class="modal">
             <div class="modal-content">
@@ -67,6 +67,12 @@
                         <input type="date" name="date" id="date" value="{{ date('Y-m-d') }}">
                         <span class="date-display">{{ date('Y年n月j日') }}</span>
                     </div>
+                    <p class="weight_log__error-message">
+                        @error('date')
+                        {{ $message }}
+                        @enderror
+                    </p>
+
                     <div class="form-group">
                         <label for="weight">体重<span class="required">必須</span></label>
                         <div class="input-group">
@@ -74,6 +80,12 @@
                             <span class="unit">kg</span>
                         </div>
                     </div>
+                    <p class="weight_log__error-message">
+                        @error('weight')
+                        {{ $message }}
+                        @enderror
+                    </p>
+
                     <div class="form-group">
                         <label for="calories">食事摂取カロリー<span class="required">必須</span></label>
                         <div class="input-group">
@@ -81,14 +93,32 @@
                             <span class="unit">cal</span>
                         </div>
                     </div>
+                    <p class="weight_log__error-message">
+                        @error('calories')
+                        {{ $message }}
+                        @enderror
+                    </p>
+
                     <div class="form-group">
                         <label for="exercise_time">運動時間<span class="required">必須</span></label>
                         <input type="time" name="exercise_time" placeholder="00:00" >
                     </div>
+                    <p class="weight_log__error-message">
+                        @error('exercise_time')
+                        {{ $message }}
+                        @enderror
+                    </p>
+
                     <div class="form-group">
                         <label for="exercise_content">運動内容</label>
                         <textarea name="exercise_content" placeholder="運動内容を追加"></textarea>
                     </div>
+                    <p class="weight_log__error-message">
+                        @error('exercise_content')
+                        {{ $message }}
+                        @enderror
+                    </p>
+
                     <div class="button-group">
                         <a href="#!" class="cancel-button" onclick="document.getElementById('modal-toggle').checked = false;">戻る</a>
                         <button type="submit" class="submit-button">登録</button>

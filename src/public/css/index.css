@@ -224,6 +224,10 @@ textarea {
     /* フォントサイズを小さく */
 }
 
+.weight_log__error-message {
+    color: red;
+}
+
 .button-group {
     display: flex;
     /* ボタンを横並びに */
