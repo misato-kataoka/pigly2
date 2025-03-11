@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>PiGLy2</h1>
+            <h1>PiGLy</h1>
             <div class="header-buttons">
                 <button class="settings-button" onclick="location.href='{{ route('goal.setting') }}'">目標体重設定</button>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
@@ -31,7 +31,7 @@
             </div>
             <div class="latest-weight">
                 <span>最新体重</span>
-                <span>{{ $latestWeight }} kg</span>
+                <span>{{ $latestWeight ? $latestWeight->weight : 'データなし' }} kg</span>
             </div>
         </div>
 
@@ -80,24 +80,28 @@
         </table>
 
         <div class="pagination">
-            <a href="{{ $weightLogs->previousPageUrl() }}" class="prev-button">&lt;</a>
+            @if ($weightLogs->hasPages())
+                <a href="{{ $weightLogs->previousPageUrl() }}" class="prev-button">&lt;</a>
 
-            @php
-                $currentPage = $weightLogs->currentPage();
-                $lastPage = $weightLogs->lastPage();
-                $startPage = max(1, $currentPage - 1); // 現在のページの1つ前から表示
-                $endPage = min($lastPage, $currentPage + 2); // 現在のページの1つ後まで表示
-            @endphp
+                @php
+                    $currentPage = $weightLogs->currentPage();
+                    $lastPage = $weightLogs->lastPage();
+                    $startPage = max(1, $currentPage - 1); // 現在のページの1つ前から表示
+                    $endPage = min($lastPage, $currentPage + 2); // 現在のページの1つ後まで表示
+                @endphp
 
-            @for ($page = $startPage; $page <= $endPage; $page++)
-                @if ($page == $currentPage)
-                    <span class="active">{{ $page }}</span>
-                @else
-                    <a href="{{ $weightLogs->url($page) }}">{{ $page }}</a>
-                @endif
-            @endfor
+                @for ($page = $startPage; $page <= $endPage; $page++)
+                    @if ($page == $currentPage)
+                        <span class="active">{{ $page }}</span>
+                    @else
+                        <a href="{{ $weightLogs->url($page) }}">{{ $page }}</a>
+                    @endif
+                @endfor
 
-            <a href="{{ $weightLogs->nextPageUrl() }}" class="next-button">&gt;</a>
+                <a href="{{ $weightLogs->nextPageUrl() }}" class="next-button">&gt;</a>
+            @else
+                <span>データがありません</span>
+            @endif
         </div>
 
         <button class="add-data-button" onclick="location.href='{{ route('weight_logs.create') }}'">データ追加</button> <!-- データ追加へのリンク -->

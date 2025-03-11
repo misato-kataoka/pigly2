@@ -34,10 +34,17 @@ class WeightLogController extends Controller
 {
     public function index()
     {
-        $weightLogs = WeightLog::where('user_id', auth()->id())->get(); // 認証ユーザーの体重ログを取得
+        $weightLogs = WeightLog::where('user_id', auth()->id())->paginate(8); // 認証ユーザーの体重ログを取得
         $weightTarget = WeightTarget::where('user_id', auth()->id())->first(); // ユーザーの目標体重を取得
+        $latestWeight = WeightLog::where('user_id', auth()->id())->latest()->first(); // 最新の体重を取得
 
-        return view('weight_logs.index', compact('weightLogs', 'weightTarget')); // ビューを返す
+        // 最新の体重が存在する場合、体重を取得し、存在しない場合は0を設定
+        $currentWeight = $latestWeight ? $latestWeight->weight : 0;
+
+        // 日付のリストを取得
+        $dates = WeightLog::where('user_id', auth()->id())->pluck('date')->unique(); // ユーザーの体重ログから日付を取得
+
+        return view('weight_logs.index', compact('weightLogs', 'weightTarget', 'latestWeight', 'currentWeight', 'dates')); // ビューを返す
     }
 
     public function create()

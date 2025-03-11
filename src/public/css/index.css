@@ -1,8 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
     margin: 0;
-    padding: 20px;
+    padding: 0px;
 }
 
 .goal-info {
@@ -35,6 +35,7 @@ header {
 
 h1 {
     color: #ec86ee;
+    font-family: 'Noto Serif JP', serif;
 }
 
 .header-buttons button {
@@ -82,11 +83,31 @@ th {
     background-color: #f2f2f2;
 }
 
+.search-button {
+    background-color: #939393;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 60px;
+}
+
 .edit-button {
     background: none;
     border: none;
     cursor: pointer;
     color: #007bff;
+}
+
+.add-data-button {
+    background: linear-gradient(to right, #a3a6e1, #f7acda);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 15%;
 }
 
 .pagination {
