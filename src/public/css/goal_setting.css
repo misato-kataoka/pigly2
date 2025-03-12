@@ -19,9 +19,8 @@ header {
 }
 
 h1 {
-    color: #d5006d;
-    /* ピンク色 */
-    margin: 0;
+    color: #ec86ee;
+    font-family: 'Noto Serif JP', serif;
 }
 
 .container {
@@ -45,6 +44,13 @@ input[type="number"] {
     margin-right: 10px;
 }
 
+.unit {
+    margin-left: 5px;
+    /* 単位の間隔 */
+    font-size: 0.9em;
+    /* フォントサイズを小さく */
+}
+
 .button-group {
     margin-top: 20px;
 }
@@ -63,7 +69,7 @@ input[type="number"] {
 }
 
 .update-button {
-    background: linear-gradient(to right, #d5006d, #ff4081);
+    background: linear-gradient(to right, #a3a6e1, #f7acda);
     color: white;
 }
 

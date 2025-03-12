@@ -6,24 +6,32 @@ body {
 }
 
 .goal-info {
-    max-width: 800px;
+    max-width: 1500px;
+    max-height: 200px;
     margin: auto;
     background: white;
+    border-radius: 5px;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1500px;
     margin: auto;
-    background: white;
+    background: #f5f5f5;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: none;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
+    padding: 0px 5px;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0;
 }
 
 .header-underline {
@@ -36,14 +44,31 @@ header {
 h1 {
     color: #ec86ee;
     font-family: 'Noto Serif JP', serif;
+    margin-left: 50px;
+    font-size: 40px;
 }
 
 .header-buttons button {
-    margin-left: 10px;
+    margin-right: 50px;
     padding: 10px 15px;
+    width: 130px;
     border: 1px solid #cdcdcd;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.goal-info,
+.search-table-container {
+    background: white;
+    /* 各セクションの背景色を白に */
+    padding: 20px;
+    /* パディングを設定 */
+    border-radius: 8px;
+    /* 角を丸く */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* 影を追加 */
+    margin-bottom: 20px;
+    /* セクションの間隔を設定 */
 }
 
 .goal-info {
@@ -72,28 +97,34 @@ h1 {
 .search-section {
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    margin: 20px;
 }
 
-.search-section select {
-    margin-right: 10px;
+.search-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-th,
-td {
+.date-select {
     padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    appearance: none;
+    width: 150px;
+    margin: 0 5px;
 }
 
-th {
-    background-color: #f2f2f2;
+.date-select:focus {
+    border-color: #b1b3b5;
+    outline: none;
+}
+
+.separator {
+    font-size: 16px;
+    margin: 0 10px;
 }
 
 .search-section {
@@ -112,22 +143,42 @@ th {
     width: 60px;
 }
 
-.edit-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #007bff;
-}
-
 .add-data-button {
     background: linear-gradient(to right, #a3a6e1, #f7acda);
     color: white;
-    /*margin-left: 200px;*/
+    margin-left: 800px;
     padding: 5px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     width: 90px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+th {
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+th::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 下に配置 */
+    height: 2px;
+    /* ボーダーの高さ */
+    background: linear-gradient(to right, #a3a6e1, #f7acda);
+    /* グラデーション */
+    z-index: 1;
+    /* テキストの下に配置 */
 }
 
 .modal {

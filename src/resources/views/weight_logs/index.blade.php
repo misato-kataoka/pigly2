@@ -7,9 +7,8 @@
     <title>PiGLy 管理画面</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>PiGLy</h1>
+    <header>
+        <h1>PiGLy</h1>
             <div class="header-buttons">
                 <button class="settings-button" onclick="location.href='{{ route('goal.setting') }}'">目標体重設定</button>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
@@ -20,6 +19,7 @@
         </header>
         <div class="header-underline"></div>
 
+    <div class="container">
         <div class="goal-info">
             <div class="goal-weight">
                 <span>目標体重</span>
@@ -35,25 +35,27 @@
             </div>
         </div>
 
-        <div class="search-section">
-            <form action="{{ route('weight_logs.search') }}" method="GET">
-                <select name="start_date">
-                    <option value="">開始日</option>
-                    @foreach ($dates as $date)
-                        <option value="{{ $date }}">{{ $date }}</option>
-                    @endforeach
-                </select>
-                <span>～</span>
-                <select name="end_date">
-                    <option value="">終了日</option>
-                    @foreach ($dates as $date)
-                        <option value="{{ $date }}">{{ $date }}</option>
-                    @endforeach
-                </select>
-                <button type="submit" class="search-button">検索</button>
-                <label for="modal-toggle" class="add-data-button">データ追加</label> <!-- データ追加ボタン -->
-            </form>
-        </div>
+        <div class="search-table-container">
+            <div class="search-section">
+                <form action="{{ route('weight_logs.search') }}" method="GET">
+                    <select name="start_date" class="date-select">
+                        <option value="">開始日</option>
+                        @foreach ($dates as $date)
+                            <option value="{{ $date }}">{{ $date }}</option>
+                        @endforeach
+                    </select>
+                    <span class="separator">～</span>
+                    <select name="end_date" class="date-select">
+                        <option value="">終了日</option>
+                        @foreach ($dates as $date)
+                            <option value="{{ $date }}">{{ $date }}</option>
+                        @endforeach
+                    </select>
+
+                    <button type="submit" class="search-button">検索</button>
+                    <label for="modal-toggle" class="add-data-button">データ追加</label> <!-- データ追加ボタン -->
+                </form>
+            </div>
 
         <input type="checkbox" id="modal-toggle" style="display:none;" {{ $errors->any() ? 'checked' : '' }} />
 
@@ -64,8 +66,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="date">日付<span class="required">必須</span></label>
-                        <input type="date" name="date" id="date" value="{{ date('Y-m-d') }}">
-                        <span class="date-display">{{ date('Y年n月j日') }}</span>
+                        <input type="date" name="date" id="date" value="{{ date('Y-m-d') }}" value="{{ old('date')}}">
                     </div>
                     <p class="weight_log__error-message">
                         @error('date')
@@ -76,47 +77,55 @@
                     <div class="form-group">
                         <label for="weight">体重<span class="required">必須</span></label>
                         <div class="input-group">
-                            <input type="number" name="weight" step="0.1" placeholder="50.0">
+                            <input type="number" name="weight" step="0.1" placeholder="50.0" value="{{ old('weight')}}">
                             <span class="unit">kg</span>
                         </div>
                     </div>
                     <p class="weight_log__error-message">
-                        @error('weight')
-                        {{ $message }}
-                        @enderror
+                        @if ($errors->has('weight'))
+                            @foreach ($errors->get('weight') as $message)
+                                <span>{{ $message }}</span><br>
+                            @endforeach
+                        @endif
                     </p>
 
                     <div class="form-group">
                         <label for="calories">食事摂取カロリー<span class="required">必須</span></label>
                         <div class="input-group">
-                            <input type="number" name="calories" placeholder="1200">
+                            <input type="number" name="calories" placeholder="1200" value="{{ old('calories')}}">
                             <span class="unit">cal</span>
                         </div>
                     </div>
                     <p class="weight_log__error-message">
-                        @error('calories')
-                        {{ $message }}
-                        @enderror
+                        @if ($errors->has('calories'))
+                            @foreach ($errors->get('calories') as $message)
+                                <span>{{ $message }}</span><br>
+                            @endforeach
+                        @endif
                     </p>
 
                     <div class="form-group">
                         <label for="exercise_time">運動時間<span class="required">必須</span></label>
-                        <input type="time" name="exercise_time" placeholder="00:00" >
+                        <input type="time" name="exercise_time" placeholder="00:00" value="{{ old('exercise_time')}}">
                     </div>
                     <p class="weight_log__error-message">
-                        @error('exercise_time')
-                        {{ $message }}
-                        @enderror
+                        @if ($errors->has('exercise_time'))
+                            @foreach ($errors->get('exercise_time') as $message)
+                                <span>{{ $message }}</span><br>
+                            @endforeach
+                        @endif
                     </p>
 
                     <div class="form-group">
                         <label for="exercise_content">運動内容</label>
-                        <textarea name="exercise_content" placeholder="運動内容を追加"></textarea>
+                        <textarea name="exercise_content" placeholder="運動内容を追加" value="{{ old('exercise_content')}}"></textarea>
                     </div>
                     <p class="weight_log__error-message">
-                        @error('exercise_content')
-                        {{ $message }}
-                        @enderror
+                        @if ($errors->has('exercise_content'))
+                            @foreach ($errors->get('exercise_content') as $message)
+                                <span>{{ $message }}</span><br>
+                            @endforeach
+                        @endif
                     </p>
 
                     <div class="button-group">
@@ -129,30 +138,33 @@
 
         <!--<button class="add-data-button" onclick="location.href='{{ route('weight_logs.create') }}'">データ追加</button> <!-- データ追加へのリンク -->
 
-        <table>
-            <thead>
-                <tr>
-                    <th>日付</th>
-                    <th>体重</th>
-                    <th>食事摂取カロリー</th>
-                    <th>運動時間</th>
-                    <th>編集</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($weightLogs as $log)
-                <tr>
-                    <td>{{ $log->date }}</td>
-                    <td>{{ $log->weight }}kg</td>
-                    <td>{{ $log->calories }}cal</td>
-                    <td>{{ $log->exercise_time }}</td>
-                    <td>
-                        <button class="edit-button" onclick="location.href='{{ route('weight_logs.edit', $log->id) }}'">✎</button> <!-- 編集ボタン -->
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">日付</th>
+                            <th style="width: 20%;">体重</th>
+                            <th style="width: 20%;">食事摂取カロリー</th>
+                            <th style="width: 15%;">運動時間</th>
+                            <th style="width: 10%;">編集</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($weightLogs as $log)
+                        <tr>
+                            <td>{{ $log->date }}</td>
+                            <td>{{ $log->weight }}kg</td>
+                            <td>{{ $log->calories }}cal</td>
+                            <td>{{ $log->exercise_time }}</td>
+                            <td>
+                                <button class="edit-button" onclick="location.href='{{ route('weight_logs.edit', $log->id) }}'">✎</button> <!-- 編集ボタン -->
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <div class="pagination">
             @if ($weightLogs->hasPages())

@@ -29,7 +29,7 @@
             <form action="{{ route('goal.setting.update') }}" method="POST">
         @csrf
         <input type="number" name="target_weight" step="0.1" value="{{ $weightTarget ? $weightTarget->target_weight : '' }}" required>
-        <span>kg</span>
+        <span class="unit">kg</span>
             <div class="button-group">
                 <a href="{{ route('weight_logs.index') }}" class="back-button">戻る</a>
                 <button type="submit" class="update-button">更新</button>
