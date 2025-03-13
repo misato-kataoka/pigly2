@@ -1,0 +1,62 @@
+header {
+    width: 100%;
+    padding: 0px 5px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    /* ヘッダーを固定 */
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    /* 他の要素の上に表示 */
+}
+
+h1 {
+    color: #ec86ee;
+    font-family: 'Noto Serif JP', serif;
+    margin-left: 50px;
+    font-size: 40px;
+}
+
+.header-buttons button {
+    margin-right: 50px;
+    padding: 10px 15px;
+    width: 150px;
+    border: 1px solid #cdcdcd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 0px 5px;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+h1 {
+    color: #ec86ee;
+    font-family: 'Noto Serif JP', serif;
+    margin-left: 50px;
+    font-size: 40px;
+}
+
+.header-buttons button {
+    margin-right: 50px;
+    padding: 10px 15px;
+    width: 150px;
+    border: 1px solid #cdcdcd;
+    border-radius: 5px;
+    cursor: pointer;
+}

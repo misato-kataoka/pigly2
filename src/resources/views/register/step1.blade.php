@@ -15,7 +15,7 @@
         <input type="text" id="name" name="name" placeholder="名前を入力" value="{{ old('name') }}">
         <p class="register__error-message">
             @error('name')
-            {{ $message }}
+                {{ $message }}
             @enderror
         </p>
 
@@ -23,7 +23,7 @@
         <input type="email" id="email" name="email" placeholder="メールアドレスを入力" value="{{ old('email') }}">
         <p class="register__error-message">
             @error('email')
-            {{ $message }}
+                {{ $message }}
             @enderror
         </p>
 
@@ -31,7 +31,7 @@
         <input type="password" id="password" name="password" placeholder="パスワードを入力">
         <p class="register__error-message">
             @error('password')
-            {{ $message }}
+                {{ $message }}
             @enderror
         </p>
 

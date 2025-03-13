@@ -32,7 +32,7 @@ Route::post('/login', [LoginController::class, 'login']);
 // ログアウト
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['pigly'])->group(function () {
+//Route::middleware(['pigly'])->group(function () {
     // 管理画面（体重ログ）
     Route::get('/weight_logs', [WeightLogController::class, 'index'])->name('weight_logs.index');
 
@@ -56,7 +56,7 @@ Route::middleware(['pigly'])->group(function () {
 
     // 体重詳細
     Route::get('/weight_logs/{weightLogId}', [WeightLogController::class, 'show'])->name('weight_logs.show');
-});
+//});
 
 /*Fortify::loginView(function () {
     return view('auth.login'); // ログインビューを返す

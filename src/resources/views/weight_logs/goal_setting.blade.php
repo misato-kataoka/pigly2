@@ -18,6 +18,13 @@
                 </form>
         </div>
     </header>
+@extends('layouts.user')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/goal_setting.css') }}">
+@endsection
+
+@section('content')
 
     <div class="container">
         @if ($errors->any())
@@ -49,5 +56,4 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+@endsection

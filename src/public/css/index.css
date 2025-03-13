@@ -21,42 +21,6 @@ body {
     border: none;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 0px 5px;
-    width: 100%;
-    position: relative;
-    left: 0;
-    right: 0;
-    margin: 0;
-}
-
-.header-underline {
-    width: 100%;
-    height: 2px;
-    background-color: #cdcdcd;
-    margin-top: 10px;
-}
-
-h1 {
-    color: #ec86ee;
-    font-family: 'Noto Serif JP', serif;
-    margin-left: 50px;
-    font-size: 40px;
-}
-
-.header-buttons button {
-    margin-right: 50px;
-    padding: 10px 15px;
-    width: 150px;
-    border: 1px solid #cdcdcd;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .goal-info,
 .search-table-container {
     background: white;
