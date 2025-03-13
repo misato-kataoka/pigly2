@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'password' => Hash::make($registrationData['password']), // パスワードをハッシュ化
         ]);
 
-        // 体重データを保存する処理を追加
+        // 体重データを保存する
         WeightLog::create([
             'user_id' => $user->id,
             'weight' => $validatedData['weight'],
