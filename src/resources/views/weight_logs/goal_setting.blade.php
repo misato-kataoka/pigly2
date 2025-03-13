@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/goal_setting.css') }}">
-    <title>目標体重設定</title>
-</head>
-
-<body>
-    <header>
-        <h1>PiGLy</h1>
-        <div class="header-buttons">
-            <button class="settings-button" onclick="location.href='{{ route('goal.setting') }}'">目標体重設定</button>
-            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="submit" class="logout-button">ログアウト</button>
-                </form>
-        </div>
-    </header>
 @extends('layouts.user')
 
 @section('css')

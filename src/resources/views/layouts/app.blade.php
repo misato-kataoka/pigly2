@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <div class="form-container">
-            <a href="/register/step1" style="text-decoration: none; color: inherit;">
+            <a href="/register/step1">
                 <h1>PiGLy</h1>
             </a>
 

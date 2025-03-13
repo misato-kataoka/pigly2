@@ -16,10 +16,8 @@ class WeightLogController extends Controller
         $weightTarget = WeightTarget::where('user_id', auth()->id())->first(); // ユーザーの目標体重を取得
         $latestWeight = WeightLog::where('user_id', auth()->id())->latest()->first(); // 最新の体重を取得
 
-        // 最新の体重が存在する場合、体重を取得し、存在しない場合は0を設定
-        $currentWeight = $latestWeight ? $latestWeight->weight : 0;
+        $currentWeight = $latestWeight ? $latestWeight->weight : 0; // 最新の体重が存在する場合、体重を取得し、存在しない場合は0を設定
 
-        // 日付のリストを取得
         $dates = WeightLog::where('user_id', auth()->id())->pluck('date')->unique(); // ユーザーの体重ログから日付を取得
 
         return view('weight_logs.index', compact('weightLogs', 'weightTarget', 'latestWeight', 'currentWeight', 'dates')); // ビューを返す
@@ -74,6 +72,29 @@ class WeightLogController extends Controller
         WeightLog::create($request->all());
 
         return redirect()->route('weight_logs.index')->with('success', '体重が登録されました。');
+    }
+
+    public function search(Request $request)
+    {
+        // 検索処理
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // 体重ログの検索処理
+        $weightLogs = WeightLog::where('user_id', auth()->id())
+            ->whereBetween('date', [$startDate, $endDate])
+            ->paginate(8);
+
+        // ユーザーの目標体重を取得
+        $weightTarget = WeightTarget::where('user_id', auth()->id())->first();
+
+        // 最新の体重を取得
+        $latestWeight = WeightLog::where('user_id', auth()->id())->latest()->first();
+
+        // 日付のリストを取得
+        $dates = WeightLog::where('user_id', auth()->id())->pluck('date')->unique();
+
+        return view('weight_logs.index', compact('weightLogs','weightTarget','latestWeight','dates'));
     }
 
     public function show($weightLogId)

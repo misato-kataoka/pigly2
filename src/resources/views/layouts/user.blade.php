@@ -9,7 +9,10 @@
 </head>
 <body>
     <header>
-        <h1>PiGLy</h1>
+        <a href="/weight_logs">
+            <h1>PiGLy</h1>
+        </a>
+        
             <div class="header-buttons">
                 <button class="settings-button" onclick="location.href='{{ route('goal.setting') }}'">
                     <img src="{{ asset('images/setting.png') }}" alt="設定" class="settings-button-icon" style="width: 20px; height: 20px; margin-right: 5px;">目標体重設定
