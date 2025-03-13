@@ -32,27 +32,32 @@ class WeightLogController extends Controller
 
     public function goalSetting()
     {
-        return view('weight_logs.goal_setting'); // 目標設定のビューを返す
+
+        $weightTarget = WeightTarget::where('user_id', auth()->id())->first();
+        return view('weight_logs.goal_setting', compact('weightTarget')); // 目標設定のビューを返す
+
+        return redirect()->route('weight_logs.index')->with('success', '目標体重が更新されました。');
     }
 
-    public function updateGoalWeight(Request $request)
+    public function updateGoalWeight(WeightLogRequest $request)
     {
-    $request->validate([
-        'target_weight' => 'required|numeric|min:0', // バリデーション
-    ]);
+        $validatedData = $request->validated(); // バリデーションされたデータを取得
 
-    $weightTarget = WeightTarget::where('user_id', auth()->id())->first();
+        // ユーザーIDに基づいて目標体重を取得
+        $weightTarget = WeightTarget::where('user_id', auth()->id())->first();
 
         if ($weightTarget) {
-            $weightTarget->update(['target_weight' => $request->target_weight]);
+            // 既存のレコードがある場合は更新
+            $weightTarget->update(['target_weight' => $validatedData['target_weight']]);
         } else {
-        // 新規作成する場合
-        WeightTarget::create([
-            'user_id' => auth()->id(),
-            'target_weight' => $request->target_weight,
-        ]);
+            // 新規作成する場合
+            WeightTarget::create([
+                'user_id' => auth()->id(),
+                'target_weight' => $validatedData['target_weight'],
+            ]);
         }
 
+        // weight_logs.indexへリダイレクト
         return redirect()->route('weight_logs.index')->with('success', '目標体重が更新されました。');
     }
 
@@ -83,7 +88,7 @@ class WeightLogController extends Controller
         return view('weight_logs.edit', compact('weightLog')); // 体重更新フォームのビューを返す
     }
 
-    public function update(ContactRequest $request, $weightLogId) // ContactRequestを使用
+    public function update(ContactRequest $request, $weightLogId)
     {
         $weightLog = WeightLog::findOrFail($weightLogId);
         $weightLog->update([

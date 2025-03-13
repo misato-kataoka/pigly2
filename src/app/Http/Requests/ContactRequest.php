@@ -35,7 +35,7 @@ class ContactRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '名前を入力してください',
+            'name.required' => 'お名前を入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください',
             'password.required' => 'パスワードを入力してください',

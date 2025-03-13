@@ -51,7 +51,7 @@ h1 {
 .header-buttons button {
     margin-right: 50px;
     padding: 10px 15px;
-    width: 130px;
+    width: 150px;
     border: 1px solid #cdcdcd;
     border-radius: 5px;
     cursor: pointer;
@@ -151,7 +151,7 @@ h1 {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    width: 90px;
+    width: 100px;
 }
 
 table {

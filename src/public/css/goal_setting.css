@@ -6,21 +6,48 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;/* 水平方向に中央揃え */
+    align-items: center;/* 垂直方向に中央揃え */
+    height: 100vh;/* ビューポートの高さを100%に設定 */
 }
 
 header {
     width: 100%;
-    padding: 20px;
+    padding: 0px 5px;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed; /* ヘッダーを固定 */
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* 他の要素の上に表示 */
+}
+
+.header-underline {
+    width: 100%;
+    height: 2px;
+    background-color: #cdcdcd;
+    margin-top: 10px;
 }
 
 h1 {
     color: #ec86ee;
     font-family: 'Noto Serif JP', serif;
+    margin-left: 50px;
+    font-size: 40px;
+}
+
+.header-buttons button {
+    margin-right: 50px;
+    padding: 10px 15px;
+    width: 150px;
+    border: 1px solid #cdcdcd;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .container {
@@ -30,14 +57,16 @@ h1 {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-top: 50px;
     text-align: center;
+    width: 600px;
+    height: 300px;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 input[type="number"] {
-    width: 100px;
+    width: 500px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -51,37 +80,34 @@ input[type="number"] {
     /* フォントサイズを小さく */
 }
 
+.target_weight__error-messag {
+    color: red;
+}
+
 .button-group {
     margin-top: 20px;
+    display: flex; /* フレックスボックスを使用してボタンを横並びに */
+    justify-content: center; /* 中央揃え */
 }
 
 .back-button,
 .update-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 10px 20px; /* パディングを設定 */
+    border: none; /* ボーダーをなしに */
+    margin: 10px; /* マージンを設定 */
+    border-radius: 4px; /* 角を丸くする */
+    cursor: pointer; /* カーソルをポインターに */
+    width: 150px; /* 幅を指定 */
+    font-size: 16px; /* フォントサイズを指定 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .back-button {
     background-color: #ccc;
-    margin-right: 10px;
+    color: black;
 }
 
 .update-button {
     background: linear-gradient(to right, #a3a6e1, #f7acda);
     color: white;
-}
-
-.header-buttons {
-    display: flex;
-}
-
-.settings-button,
-.logout-button {
-    margin-left: 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: #d5006d;
 }
