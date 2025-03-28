@@ -12,18 +12,20 @@
         @csrf
 
         <label for="weight">現在の体重</label>
-            <input type="text" id="weight" name="weight" placeholder="現在の体重を入力" value="{{ old('weight') }}">kg
+            <input type="text" id="weight" name="weight" placeholder="現在の体重を入力" value="{{ old('weight') }}">
+            <span>kg</span>
             <p class="weight__error-message">
                 @error('weight')
-                    {{ $message }}
+                {{ $message }}
                 @enderror
             </p>
 
         <label for="target-weight">目標の体重</label>
-            <input type="text" id="target-weight" name="target-weight" placeholder="目標の体重を入力" value="{{ old('target-weight') }}">kg
+            <input type="text" id="target-weight" name="target-weight" placeholder="目標の体重を入力" value="{{ old('target-weight') }}">
+            <span>kg</span>
             <p class="weight__error-message">
                 @error('target_weight')
-                    {{ $message }}
+                {{ $message }}
                 @enderror
             </p>
 

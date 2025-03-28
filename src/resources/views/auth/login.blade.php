@@ -20,7 +20,7 @@
         </p>
 
         <label for="password">パスワード</label>
-        <input type="password" id="password" name="password" placeholder="パスワードを入力" value="{{ old('email') }}">
+        <input type="password" id="password" name="password" placeholder="パスワードを入力"/>
         <p class="login__error-message">
             @error('password')
             {{ $message }}

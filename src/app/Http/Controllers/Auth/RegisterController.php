@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\User;
-use App\Model\WeightLog;
-use App\Model\WeightTarget;
+use App\Models\WeightLog;
+use App\Models\WeightTarget;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -15,15 +15,15 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        return view('register.step1'); // 登録フォームのビューを返す
+        return view('auth.register_step1'); // 登録フォームのビューを返す
     }
 
     public function register(ContactRequest $request)
     {
-        $validatedData = $request->validated();
+        //$validatedData = $request->validated();
 
         // セッションにデータを保存
-        $request->session()->put('registration_data', $validatedData);
+        $request->session()->put('registration_data'/*, $validatedData*/);
 
         // step2へリダイレクト
         return redirect()->route('register.step2');
@@ -36,7 +36,7 @@ class RegisterController extends Controller
             return redirect()->route('register.step1'); // step1に戻す
         }
 
-        return view('register.step2'); // step2のフォームを表示
+        return view('auth.register_step2'); // step2のフォームを表示
     }
 
     public function registerStep2(ContactRequest $request)

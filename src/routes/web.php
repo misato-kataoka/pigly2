@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeightLogController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
-//use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
-//use Laravel\Fortify\Facades\Fortify;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +27,7 @@ Route::post('/register/step2', [RegisterController::class, 'registerStep2'])->na
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
+/*
 // ログアウト
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -57,7 +56,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     // 体重詳細
     Route::get('/weight_logs/{weightLogId}', [WeightLogController::class, 'show'])->name('weight_logs.show');
 //});
-
-/*Fortify::loginView(function () {
-    return view('auth.login'); // ログインビューを返す
-});*/
+*/

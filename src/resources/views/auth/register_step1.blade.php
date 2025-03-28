@@ -8,14 +8,14 @@
 
     <h2>新規会員登録</h2>
     <p>STEP1 アカウント情報の登録</p>
-    <form action="{{ route('register.step1') }}" method="POST">
+    <form action="/register/step1" method="POST">
         @csrf
 
         <label for="name">お名前</label>
             <input type="text" id="name" name="name" placeholder="名前を入力" value="{{ old('name') }}">
             <p class="register__error-message">
                 @error('name')
-                    {{ $message }}
+                {{ $message }}
                 @enderror
             </p>
 
@@ -23,7 +23,7 @@
             <input type="email" id="email" name="email" placeholder="メールアドレスを入力" value="{{ old('email') }}">
             <p class="register__error-message">
                 @error('email')
-                    {{ $message }}
+                {{ $message }}
                 @enderror
             </p>
 
@@ -31,7 +31,7 @@
             <input type="password" id="password" name="password" placeholder="パスワードを入力">
             <p class="register__error-message">
                 @error('password')
-                    {{ $message }}
+                {{ $message }}
                 @enderror
             </p>
 
